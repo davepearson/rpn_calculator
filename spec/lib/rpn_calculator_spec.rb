@@ -4,7 +4,8 @@ describe RpnCalculator do
   describe '#push' do
     it 'pushes a number on the stack' do
       calc = RpnCalculator.new
-      expect(calc.push(2)).to eq(2)
+      answer = calc.push(2)
+      expect(answer).to eq(2)
     end
   end
 
@@ -17,6 +18,12 @@ describe RpnCalculator do
 
       expect(answer).to eq(5)
     end
+
+    it 'raises exception if not enough arguments' do
+      calc = RpnCalculator.new
+      calc.push(7)
+      expect { calc.+ }.to raise_error(StandardError)
+    end
   end
 
   describe '#-' do
@@ -27,6 +34,12 @@ describe RpnCalculator do
       answer = calc.-
 
       expect(answer).to eq(1)
+    end
+
+    it 'raises exception if not enough arguments' do
+      calc = RpnCalculator.new
+      calc.push(7)
+      expect { calc.- }.to raise_error(StandardError)
     end
   end
 
@@ -39,6 +52,12 @@ describe RpnCalculator do
 
       expect(answer).to eq(6)
     end
+
+    it 'raises exception if not enough arguments' do
+      calc = RpnCalculator.new
+      calc.push(7)
+      expect { calc.* }.to raise_error(StandardError)
+    end
   end
 
   describe '#/' do
@@ -49,6 +68,12 @@ describe RpnCalculator do
       answer = calc./
 
       expect(answer).to eq(5)
+    end
+
+    it 'raises exception if not enough arguments' do
+      calc = RpnCalculator.new
+      calc.push(7)
+      expect { calc./ }.to raise_error(StandardError)
     end
   end
 
@@ -81,6 +106,11 @@ describe RpnCalculator do
       # this should be -5 since ruby rounds away from 0
       expect(answer).to eq(-5)
     end
+
+    it 'raises exception if not enough arguments' do
+      calc = RpnCalculator.new
+      expect { calc.round }.to raise_error(StandardError)
+    end
   end
 
   describe 'acceptance' do
@@ -89,7 +119,8 @@ describe RpnCalculator do
       calc.push(2)
       calc.push(3.5)
       calc.+
-      expect(calc.round).to eq(6)
+      answer = calc.round
+      expect(answer).to eq(6)
     end
   end
 end

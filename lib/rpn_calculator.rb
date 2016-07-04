@@ -26,7 +26,7 @@ class RpnCalculator
   # Addition
   #
   def +
-    raise ArgumentError.new("Not enough numbers on stack") if @stack.length<2
+    raise StandardError.new("Not enough numbers on stack") if @stack.length<2
     num1 = pop
     num2 = pop
     result = num2 + num1
@@ -38,7 +38,7 @@ class RpnCalculator
   # Subtraction
   #
   def -
-    raise ArgumentError.new("Not enough numbers on stack") if @stack.length<2
+    raise StandardError.new("Not enough numbers on stack") if @stack.length<2
     num1 = pop
     num2 = pop
     result = num2 - num1
@@ -50,7 +50,7 @@ class RpnCalculator
   # Multiplication
   #
   def *
-    raise ArgumentError.new("Not enough numbers on stack") if @stack.length<2
+    raise StandardError.new("Not enough numbers on stack") if @stack.length<2
     num1 = pop
     num2 = pop
     result = num2 * num1
@@ -62,7 +62,7 @@ class RpnCalculator
   # Division
   #
   def /
-    raise ArgumentError.new("Not enough numbers on stack") if @stack.length<2
+    raise StandardError.new("Not enough numbers on stack") if @stack.length<2
     num1 = pop
     num2 = pop
     result = num2 / num1
@@ -73,7 +73,7 @@ class RpnCalculator
   ##
   # Round the top number on the stack
   def round
-    raise ArgumentError.new("Not enough numbers on stack") if @stack.length<1
+    raise StandardError.new("Not enough numbers on stack") if @stack.length<1
     num = pop
     result = num.round
     push(result)
