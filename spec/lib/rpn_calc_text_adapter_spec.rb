@@ -4,7 +4,8 @@ describe RpnCalcTextAdapter do
   describe '#process' do
     it 'pushes a number' do
       adapter = RpnCalcTextAdapter.new
-      expect(adapter.process("2")).to eq("2")
+      result = adapter.process("2")
+      expect(result).to eq("2")
     end
 
     it 'adds' do
@@ -12,7 +13,6 @@ describe RpnCalcTextAdapter do
       adapter.process("2")
       adapter.process("3")
       result = adapter.process("+")
-
       expect(result).to eq("5")
     end
 
@@ -26,6 +26,13 @@ describe RpnCalcTextAdapter do
       adapter = RpnCalcTextAdapter.new
       result = adapter.process("2 3 +")
       expect(result).to eq("5")
+    end
+
+    it 'handles errors from not enough operands on stack' do
+      adapter = RpnCalcTextAdapter.new
+      adapter.process("2")
+      result = adapter.process("+")
+      expect(result).to eq("Not enough numbers on stack")
     end
   end
 
