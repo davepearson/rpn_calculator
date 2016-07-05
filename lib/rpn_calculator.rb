@@ -65,9 +65,15 @@ class RpnCalculator
     raise StandardError.new("Not enough numbers on stack") if @stack.length<2
     num1 = pop
     num2 = pop
-    result = num2 / num1
-    push(result)
-    return result
+    if num1.zero?
+      push(num2)
+      push(num1)
+      raise StandardError.new("Cannot divide by zero")
+    else
+      result = num2 / num1
+      push(result)
+      return result
+    end
   end
 
   ##

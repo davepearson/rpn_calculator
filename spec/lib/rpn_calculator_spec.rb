@@ -75,6 +75,20 @@ describe RpnCalculator do
       calc.push(7)
       expect { calc./ }.to raise_error(StandardError)
     end
+
+    it 'raises exception if divide by 0' do
+      calc = RpnCalculator.new
+      calc.push(7)
+      calc.push(0)
+      expect { calc./ }.to raise_error(StandardError)
+    end
+
+    it 'raises exception if divide by 0.0' do
+      calc = RpnCalculator.new
+      calc.push(7)
+      calc.push(0.0)
+      expect { calc./ }.to raise_error(StandardError)
+    end
   end
 
   describe '#round' do
